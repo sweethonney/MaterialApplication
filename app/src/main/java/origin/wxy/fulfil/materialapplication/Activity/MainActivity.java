@@ -1,14 +1,15 @@
 package origin.wxy.fulfil.materialapplication.Activity;
 
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -18,17 +19,30 @@ import android.view.MenuItem;
 import android.view.View;
 import android.wxy.fulfil.materialapplication.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener, SwipeRefreshLayout.OnRefreshListener,
-        HomeFragment.OnFragmentInteractionListener,FriendsFragment.OnFragmentInteractionListener,MessagesFragment.OnFragmentInteractionListener{
+        HomeFragment.OnFragmentInteractionListener, FriendsFragment.OnFragmentInteractionListener, MessagesFragment.OnFragmentInteractionListener {
     Toolbar toolbar;
     FragmentDrawer drawerFragment;
     SwipeRefreshLayout swipeRefreshLayout;
- //   CoordinatorLayout coordinatorlayout;
+    //   CoordinatorLayout coordinatorlayout;
     @Bind(R.id.coordinator_layout)
     CoordinatorLayout coordinatorLayout;
+    @Bind(R.id.tabs)
+    TabLayout tabs;
+    @Bind(R.id.viewpager)
+    ViewPager viewpager;
+
+    private int[] tabIcons = {
+            R.drawable.ic_action_achievement,
+            R.drawable.ic_action_armchair,
+            R.drawable.ic_action_bargraph
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-      //  coordinatorlayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
+        //  coordinatorlayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -48,22 +62,37 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                         .setAction("Action", null).show();
             }
         });
+
+        setupViewPager(viewpager);
+        tabs.setupWithViewPager(viewpager);
+
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
         drawerFragment.setDrawerListener(this);
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        setupTabIcons();
+     /*   swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setColorSchemeColors(Color.RED);
-        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setOnRefreshListener(this);*/
 
         /**
          * Showing Swipe Refresh animation on activity create
          * As animation won't start on onCreate, post runnable is used
          */
-        onFresh();
+       // onFresh();
 
-        displayView(0);
+      //  displayView(0);
     }
+
+    private void setupTabIcons() {
+        tabs.getTabAt(0).setIcon(tabIcons[0]);
+        tabs.getTabAt(1).setIcon(tabIcons[1]);
+        tabs.getTabAt(2).setIcon(tabIcons[2]);
+        tabs.getTabAt(3).setIcon(tabIcons[0]);
+        tabs.getTabAt(4).setIcon(tabIcons[1]);
+        tabs.getTabAt(5).setIcon(tabIcons[2]);
+    }
+
 
     private void onFresh() {
         swipeRefreshLayout.post(new Runnable() {
@@ -109,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void onDrawerItemSelected(View view, int position) {
         displayView(position);
@@ -134,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 break;
         }
 
-        if (fragment != null) {
+/*        if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container_body, fragment);
@@ -142,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
             // set the toolbar title
             getSupportActionBar().setTitle(title);
-        }
+        }*/
     }
 
     @Override
@@ -168,5 +198,44 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new HomeFragment(), "HOME");
+        adapter.addFragment(new FriendsFragment(), "FRIEND");
+        adapter.addFragment(new MessagesFragment(), "MESSAGE");
+        adapter.addFragment(new HomeFragment(), "HOME1");
+        adapter.addFragment(new FriendsFragment(), "FRIEND1");
+        adapter.addFragment(new MessagesFragment(), "MESSAGE1");
+        viewPager.setAdapter(adapter);
+    }
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
 }
