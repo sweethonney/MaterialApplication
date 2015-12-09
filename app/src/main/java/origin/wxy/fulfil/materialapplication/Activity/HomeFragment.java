@@ -11,7 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.wxy.fulfil.materialapplication.R;
+import origin.wxy.fulfil.materialapplication.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,22 +66,25 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        swipeRefreshLayout = (SwipeRefreshLayout) this.getView().findViewById(R.id.swipeRefreshLayout);
-        swipeRefreshLayout.setColorSchemeColors(Color.RED);
-        swipeRefreshLayout.setOnRefreshListener(this);
+
 
         /**
          * Showing Swipe Refresh animation on activity create
          * As animation won't start on onCreate, post runnable is used
          */
-        onFresh();
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+
+       View view = inflater.inflate(R.layout.fragment_home, container, false);
+        swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setColorSchemeColors(Color.RED);
+        swipeRefreshLayout.setOnRefreshListener(this);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -6,11 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import origin.wxy.fulfil.materialapplication.Model.NavDrawerItem;
-import android.wxy.fulfil.materialapplication.R;
 
 import java.util.Collections;
 import java.util.List;
+
+import origin.wxy.fulfil.materialapplication.Model.NavDrawerItem;
+import origin.wxy.fulfil.materialapplication.R;
 
 /**
  * Created by zwk on 2015/12/2.

@@ -8,7 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.wxy.fulfil.materialapplication.R;
+import origin.wxy.fulfil.materialapplication.R;
+
 
 /**
  * A simple {@link Fragment} subclass.

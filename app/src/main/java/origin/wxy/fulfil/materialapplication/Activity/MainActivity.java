@@ -11,25 +11,24 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.wxy.fulfil.materialapplication.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import origin.wxy.fulfil.materialapplication.R;
 
-public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener, SwipeRefreshLayout.OnRefreshListener,
+public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener,
         HomeFragment.OnFragmentInteractionListener, FriendsFragment.OnFragmentInteractionListener, MessagesFragment.OnFragmentInteractionListener {
     Toolbar toolbar;
     FragmentDrawer drawerFragment;
-    SwipeRefreshLayout swipeRefreshLayout;
+  //  SwipeRefreshLayout swipeRefreshLayout;
     //   CoordinatorLayout coordinatorlayout;
     @Bind(R.id.coordinator_layout)
     CoordinatorLayout coordinatorLayout;
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
         drawerFragment.setDrawerListener(this);
-        setupTabIcons();
+      //  setupTabIcons();
      /*   swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setColorSchemeColors(Color.RED);
         swipeRefreshLayout.setOnRefreshListener(this);*/
@@ -94,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     }
 
 
-    private void onFresh() {
+   /* private void onFresh() {
         swipeRefreshLayout.post(new Runnable() {
                                     @Override
                                     public void run() {
@@ -105,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         );
         Snackbar.make(coordinatorLayout, "Loading", Snackbar.LENGTH_SHORT)
                 .setAction("Action", null).show();
-    /*    Toast.makeText(this,"刷新中",Toast.LENGTH_SHORT);*/
+    *//*    Toast.makeText(this,"刷新中",Toast.LENGTH_SHORT);*//*
 
         swipeRefreshLayout.postDelayed(new Runnable() {
             @Override
@@ -115,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         }, 3000);
 
     }
-
+*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -175,25 +174,25 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         }*/
     }
 
-    @Override
+ /*   @Override
     public void onRefresh() {
- /*     new Handler().postDelayed(new Runnable() {
+ *//*     new Handler().postDelayed(new Runnable() {
           @Override
           public void run() {
               swipeRefreshLayout.setRefreshing(false);
           }
-      },2000);*/
+      },2000);*//*
         onFresh();
         //  Toast.makeText(this,"刷新中",Toast.LENGTH_SHORT);
-   /*     try {
+   *//*     try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
+        }*//*
         //  swipeRefreshLayout.setRefreshing(false);
 
 
-    }
+    }*/
 
     @Override
     public void onFragmentInteraction(Uri uri) {

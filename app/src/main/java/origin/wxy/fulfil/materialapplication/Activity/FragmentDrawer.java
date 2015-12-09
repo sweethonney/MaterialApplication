@@ -14,12 +14,13 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import origin.wxy.fulfil.materialapplication.Adapter.NavigationDrawerAdapter;
-import origin.wxy.fulfil.materialapplication.Model.NavDrawerItem;
-import android.wxy.fulfil.materialapplication.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import origin.wxy.fulfil.materialapplication.Adapter.NavigationDrawerAdapter;
+import origin.wxy.fulfil.materialapplication.Model.NavDrawerItem;
+import origin.wxy.fulfil.materialapplication.R;
 
 /**
  * A simple {@link Fragment} subclass.
