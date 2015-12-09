@@ -4,8 +4,29 @@
     android:layout_height="match_parent"
     tools:context="origin.wxy.fulfil.materialapplication.Activity.MessagesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:checkedButton="@+id/linear_layout_rb">
+        <RadioButton android:id="@+id/linear_layout_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/linear_layout_manager"/>
+        <RadioButton android:id="@+id/grid_layout_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/grid_layout_manager"/>
+    </RadioGroup>
+    <!-- A RecyclerView with some commonly used attributes -->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_recycler_view"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+   <!-- <TextView
         android:id="@+id/label"
         android:layout_alignParentTop="true"
         android:layout_marginTop="100dp"
@@ -24,5 +45,5 @@
         android:textSize="12dp"
         android:layout_marginTop="220dp"
         android:gravity="center_horizontal"
-        android:text="Edit fragment_home.xml to change the appearance" />
+        android:text="Edit fragment_home.xml to change the appearance" />-->
 </FrameLayout>

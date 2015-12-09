@@ -12,6 +12,9 @@
     <string name="nav_item_friends">Friends</string>
     <string name="nav_item_notifications">Messages</string>
 
+    <string name="grid_layout_manager">Grid Layout Manager</string>
+    <string name="linear_layout_manager">Linear Layout Manager</string>
+
     <string name="hint_name">Full Name</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
@@ -30,4 +33,15 @@
     <string name="title_messages">Messages</string>
     <string name="title_friends">Friends</string>
     <string name="title_home">Home</string>
+
+
+     <string name="cardview_contents">This is a CardView widget. CardView widgets can have
+        shadows and rounded corners.
+        \n\nTo create a card with a shadow, use the <font fgcolor="#FFFFFFFF">android:elevation</font>
+        attribute.
+        \n\nTo set the corner radius in your layouts, use the <font
+             fgcolor="#FFFFFFFF">card_view:cardCornerRadius</font> attribute.
+    </string>
+    <string name="cardview_radius_seekbar_text">Radius</string>
+    <string name="cardview_elevation_seekbar_text">Elevation</string>
 </resources>

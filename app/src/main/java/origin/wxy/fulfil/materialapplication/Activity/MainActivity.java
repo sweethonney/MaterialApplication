@@ -24,7 +24,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import origin.wxy.fulfil.materialapplication.R;
 
-public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener,
+public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener,CardViewFragment.OnFragmentInteractionListener,
         HomeFragment.OnFragmentInteractionListener, FriendsFragment.OnFragmentInteractionListener, MessagesFragment.OnFragmentInteractionListener {
     Toolbar toolbar;
     FragmentDrawer drawerFragment;
@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         adapter.addFragment(new HomeFragment(), "HOME");
         adapter.addFragment(new FriendsFragment(), "FRIEND");
         adapter.addFragment(new MessagesFragment(), "MESSAGE");
-        adapter.addFragment(new HomeFragment(), "HOME1");
+        adapter.addFragment(new CardViewFragment(), "CARDVIEW");
         adapter.addFragment(new FriendsFragment(), "FRIEND1");
         adapter.addFragment(new MessagesFragment(), "MESSAGE1");
         viewPager.setAdapter(adapter);
